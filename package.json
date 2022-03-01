@@ -1,0 +1,23 @@
+{
+  "name": "app_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Programcilikta-GuncelKonular-Org/App_BackEnd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Programcilikta-GuncelKonular-Org/App_BackEnd/issues"
+  },
+  "homepage": "https://github.com/Programcilikta-GuncelKonular-Org/App_BackEnd#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
