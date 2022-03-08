@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Programcilikta-GuncelKonular-Org/App_BackEnd#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "helmet": "^5.0.2",
     "nodemon": "^2.0.15",
     "yarn": "^1.22.17"
   }
