@@ -12,6 +12,8 @@ config();
 
 const app = express();
 
+//loader modülü eklenecek
+
 /*
  *helmet paketi uygulamaya eklendi
  bu paketin ne işe yaradığını araştırın
