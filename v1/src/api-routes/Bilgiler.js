@@ -29,4 +29,10 @@ router.post("/bilgiduzenle/id", (req, res) => {
   console.log("Bilgi düzenleme isteği geldi");
 });
 
-module.exports = router;
+router.post("/bilgisil/id", (req, res) => {
+    
+  //veri tabanında bilgi güncellenecek
+  console.log("Bilgi silme isteği geldi");
+});
+
+module.exports = {router};
