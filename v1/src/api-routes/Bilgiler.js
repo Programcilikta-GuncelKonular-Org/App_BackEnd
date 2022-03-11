@@ -35,4 +35,4 @@ router.post("/bilgisil/id", (req, res) => {
   console.log("Bilgi silme isteği geldi");
 });
 
-module.exports = {router};
+module.exports = router;
