@@ -15,7 +15,7 @@ router.get("/bilgiler", (req, res) => {
 });
 
 // router.post("/bilgiekle", bilgiEkle); //controller metodu çağıracağız
-router.route("/bilgiekle").post(bilgiEkle); //controller metodu çağıracağız
+router.route("/api/bilgiekle").post(bilgiEkle); //controller metodu çağıracağız
 
 //değişecek
 router.post("/bilgiduzenle/id", (req, res) => {

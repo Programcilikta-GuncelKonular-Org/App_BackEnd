@@ -22,8 +22,9 @@ const app = express();
  */
 
 app.use(helmet());
+app.use(express.json());
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.APP_PORT, () => {
     //3002 portundan gelen istekler
     console.log(`${process.env.APP_PORT} portu dinleniyor...`);
 
