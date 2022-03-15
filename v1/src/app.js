@@ -7,8 +7,10 @@ const express = require("express");
 const helmet = require("helmet");
 const { BilgilerRoutes } = require("./api-routes");
 const config = require("./config");
+const loaders = require("./loaders");
 
 config();
+loaders();
 
 const app = express();
 
@@ -23,7 +25,7 @@ app.use(helmet());
 
 app.listen(process.env.PORT, () => {
     //3002 portundan gelen istekler
-    console.log(`${process.env.PORT} portu dinleniyor...`);
+    console.log(`${process.env.APP_PORT} portu dinleniyor...`);
 
     app.use(BilgilerRoutes);
 })

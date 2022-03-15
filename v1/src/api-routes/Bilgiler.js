@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const { bilgiEkle } = require("../controllers/BilgilerController");
 
 router.get("/bilgiler", (req, res) => {
-
   //veri tabanındaki bütün paylaşılan bilgileri dönecek
 
   console.log("İstek geldi...", req);
@@ -14,23 +14,17 @@ router.get("/bilgiler", (req, res) => {
   });
 });
 
-router.post("/bilgiekle", (req, res) => {
+// router.post("/bilgiekle", bilgiEkle); //controller metodu çağıracağız
+router.route("/bilgiekle").post(bilgiEkle); //controller metodu çağıracağız
 
-  //veri tabanına yeni bilgi ekleyecek
-  console.log("Bilgi ekleme isteği geldi");
-  res.status(200).send({
-    detay: "Başarı ile eklendi",
-  });
-});
-
+//değişecek
 router.post("/bilgiduzenle/id", (req, res) => {
-    
   //veri tabanında bilgi güncellenecek
   console.log("Bilgi düzenleme isteği geldi");
 });
 
+//silme
 router.post("/bilgisil/id", (req, res) => {
-    
   //veri tabanında bilgi güncellenecek
   console.log("Bilgi silme isteği geldi");
 });
