@@ -15,8 +15,16 @@ const ObjectValidation = (schema) => (req, res, next) => {
      * loglama yapılmalı
      */
 
-    console.log(`Veri hatalı! -  ${hataMesajiStr}`);
-    res.status(httpStatus.BAD_REQUEST).json({ hataMesaji: "Veriler uygun değil" });//[object Object] dönmesine bak
+    /**??????
+     * let iterator = hataMesajiStr.values();
+     * console.log("Hata mesajı - ", iterator.next().value);
+     */
+    
+    
+
+    res
+      .status(httpStatus.BAD_REQUEST)
+      .json({ hataMesaji: "Veriler uygun değil" }); //[object Object] dönmesine bak
 
     return;
   }
