@@ -11,7 +11,7 @@ const loaders = require("./loaders");
 const app_port = process.env.APP_PORT || 3002;
 
 config();
-loaders();
+//loaders();
 
 const app = express();
 
