@@ -8,6 +8,7 @@ const helmet = require("helmet");
 const { BilgilerRoutes } = require("./api-routes");
 const config = require("./config");
 const loaders = require("./loaders");
+const app_port = process.env.APP_PORT || 3002;
 
 config();
 loaders();
@@ -24,7 +25,7 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 
-app.listen(process.env.APP_PORT, () => {
+app.listen(app_port, () => {
     //3002 portundan gelen istekler
     console.log(`${process.env.APP_PORT} portu dinleniyor...`);
 
