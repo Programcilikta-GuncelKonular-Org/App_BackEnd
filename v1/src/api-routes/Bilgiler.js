@@ -17,6 +17,9 @@ router.get("/bilgiler", (req, res) => {
 });
 
 // router.post("/bilgiekle", bilgiEkle); //controller metodu çağıracağız
+/**
+ * ekstra bir şeye gerek var mı?
+ */
 router
   .route("/api/bilgiekle")
   .post(ObjectValidation(Schemas.objectValidate), bilgiEkle); //controller metodu çağıracağız
