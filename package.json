@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./v1/src/app.js"
+    "start": "nodemon ./v1/src/server.js",
+    "test": "jest ./v1/src/test/test.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
     "joi": "^17.6.0",
     "mongoose": "^6.2.6",
     "nodemon": "^2.0.15",
-    "yarn": "^1.22.17"
+    "yarn": "^1.22.17",
+    "supertest": "^6.2.2",
+    "jest": "^27.5.1"
   }
 }

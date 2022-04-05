@@ -19,6 +19,11 @@ const connectDB = async () => {
   );
 };
 
+const closeConnection = async () => {
+  await Monngoose.connection.close();
+}
+
 module.exports = {
   connectDB,
+  closeConnection
 };

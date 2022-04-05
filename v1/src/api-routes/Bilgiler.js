@@ -36,4 +36,9 @@ router.post("/bilgisil/id", (req, res) => {
   console.log("Bilgi silme isteği geldi");
 });
 
+/** Test */
+router.get("/api/testBilgiler", (req, res) => {
+  res.status(500).send(); //??
+});
+
 module.exports = router;
