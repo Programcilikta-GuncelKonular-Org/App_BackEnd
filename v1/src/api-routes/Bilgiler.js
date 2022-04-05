@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { bilgiEkle } = require("../controllers/BilgilerController");
+const { bilgiEkle, bilgiDuzenle, Sil } = require("../controllers/BilgilerController");
 const Schemas = require("../validations/Bilgiler");
 const { ObjectValidation } = require("../middleware/validations");
 
@@ -25,10 +25,9 @@ router
   .post(ObjectValidation(Schemas.objectValidate), bilgiEkle); //controller metodu çağıracağız
 
 //değişecek
-router.post("/bilgiduzenle/id", (req, res) => {
-  //veri tabanında bilgi güncellenecek
-  console.log("Bilgi düzenleme isteği geldi");
-});
+router.route("/api/bilgiduzenle").put(bilgiDuzenle);
+//router.route("/api/bilgiduzenle").put(ObjectValidation(Schemas.idValidate), bilgiDuzenle);//id validation ekle unutma
+router.route("/api/bilgisil").post(Sil);
 
 //silme
 router.post("/bilgisil/id", (req, res) => {
@@ -38,7 +37,7 @@ router.post("/bilgisil/id", (req, res) => {
 
 /** Test */
 router.get("/api/testBilgiler", (req, res) => {
-  res.status(500).send(); //??
+  res.status(200).send(); //??
 });
 
 module.exports = router;
