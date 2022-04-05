@@ -5,7 +5,7 @@ db.on("error", () => {
   console.log("DB bağlantı hatası...");
 });
 
-db.once("open", () => {
+db.once("open", async () => {
   console.log("DB bağlantısı sağlandı...");
 });
 

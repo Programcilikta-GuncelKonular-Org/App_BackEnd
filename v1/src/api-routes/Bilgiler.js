@@ -38,7 +38,7 @@ router.post("/bilgisil/id", (req, res) => {
 
 /** Test */
 router.get("/api/testBilgiler", (req, res) => {
-  res.status(500).send(); //??
+  res.status(200).send(); //??
 });
 
 module.exports = router;
