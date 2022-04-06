@@ -13,11 +13,15 @@ const BilgiSchema = new mongoose.Schema(
   }
 );
 
+/**
+ * bu kısım üzerinden geçilmeli 
+ */
+
 BilgiSchema.post("save", (doc) => {
   console.log("Bilgi model: Kaydedilen doküman - \n", doc);
 });
 
-BilgiSchema.post("updateOne", (doc) => {
+BilgiSchema.post("findOneAndUpdate", (doc) => {
   console.log("Bilgi model: Düzenlenen doküman - ", doc);
   // return doc;
 });
