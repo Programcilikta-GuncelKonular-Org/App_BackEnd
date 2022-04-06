@@ -13,7 +13,7 @@ const update = (DuzenlenenBilgi) => {
     begeniler: DuzenlenenBilgi.begeniler,
   };
 
-  return Bilgi.findByIdAndUpdate(DuzenlenenBilgi.id, guncelBilgi);
+  return Bilgi.updateOne(DuzenlenenBilgi);
 };
 
 const remove = (silinecekbilgi) => {

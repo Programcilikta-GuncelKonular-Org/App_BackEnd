@@ -1,7 +1,6 @@
 const { insert, remove, update } = require("../services/BilgilerService");
 
 const bilgiEkle = (req, res) => {
-  //gidecek Bilgi servisinden ekleme metodu tetikleyecek
   console.log(req.body);
   insert(req.body)
     .then((response) => {
@@ -22,7 +21,6 @@ const bilgiDuzenle = (req, res) => {
 };
 
 const bilgiSil = (req, res) => {
-  //gidecek Bilgi servisinden ekleme metodu tetikleyecek
   remove(req.body)
     .then((response) => {
       console.log(response);

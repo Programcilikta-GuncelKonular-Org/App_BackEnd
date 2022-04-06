@@ -14,7 +14,12 @@ const BilgiSchema = new mongoose.Schema(
 );
 
 BilgiSchema.post("save", (doc) => {
-  console.log("Kaydedilen doküman - ", doc);
+  console.log("Bilgi model: Kaydedilen doküman - \n", doc);
+});
+
+BilgiSchema.post("updateOne", (doc) => {
+  // console.log("Bilgi model: Düzenlenen doküman - ", doc);
+  return doc;
 });
 
 module.exports = mongoose.model("BilgiSchema", BilgiSchema);

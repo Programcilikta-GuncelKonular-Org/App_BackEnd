@@ -26,8 +26,10 @@ router
   .route("/api/bilgiekle")
   .post(ObjectValidation(Schemas.objectValidate), bilgiEkle); //controller metodu çağıracağız
 
-/** Paylaşım düzenleme */
-router.route("/api/bilgiduzenle").put(IdValidate(), bilgiDuzenle);
+/** Paylaşım düzenleme 
+ * IdValidate() metoduna Schemas.idValidate parametre olarak vermeyi atlamışız
+*/
+router.route("/api/bilgiduzenle").put(IdValidate(Schemas.idValidate), bilgiDuzenle);
 
 /** Paylaşım silme */
 router.route("/api/bilgisil").delete(bilgiSil);
