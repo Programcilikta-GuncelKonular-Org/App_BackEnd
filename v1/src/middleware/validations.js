@@ -16,7 +16,9 @@ const ObjectValidation = (schema) => (req, res, next) => {
      */
 
     console.log(`Veri hatalı! -  ${hataMesajiStr}`);
-    res.status(httpStatus.BAD_REQUEST).json({ hataMesaji: "Veriler uygun değil" });//[object Object] dönmesine bak
+    res
+      .status(httpStatus.BAD_REQUEST)
+      .json({ hataMesaji: "Veriler uygun değil" }); //[object Object] dönmesine bak
 
     return;
   }
@@ -29,6 +31,27 @@ const ObjectValidation = (schema) => (req, res, next) => {
   return next();
 };
 
+const IdValidate = (schema) => (req, res, next) => {
+  const { value, error } = schema.validate(req.body);
+
+  if (error) {
+    const hataMesajiStr = error.details
+      ?.map((detay) => error.details)
+      .join(", ");
+
+      res
+      .status(httpStatus.BAD_REQUEST)
+      .json({ hataMesaji: "Veriler uygun değil" });
+
+      return;
+  }
+
+  Object.assign(req, value);
+
+  return next();
+};
+
 module.exports = {
   ObjectValidation,
+  IdValidate,
 };

@@ -1,5 +1,4 @@
-const { insert,remove,Degistir } = require("../services/BilgilerService");
-
+const { insert, remove, update } = require("../services/BilgilerService");
 
 const bilgiEkle = (req, res) => {
   //gidecek Bilgi servisinden ekleme metodu tetikleyecek
@@ -13,7 +12,7 @@ const bilgiEkle = (req, res) => {
     });
 };
 const bilgiDuzenle = (req, res) => {
-  Degistir(req.body)
+  update(req.body)
     .then((response) => {
       res.status(200).send({ resData: response });
     })
@@ -22,7 +21,7 @@ const bilgiDuzenle = (req, res) => {
     });
 };
 
-const Sil = (req, res) => {
+const bilgiSil = (req, res) => {
   //gidecek Bilgi servisinden ekleme metodu tetikleyecek
   remove(req.body)
     .then((response) => {
@@ -30,12 +29,14 @@ const Sil = (req, res) => {
       res.status(200).send({ resData: response });
     })
     .catch((err) => {
-      res.status(500).send({ resData: "Silinme işlemi Başarısız.Hata : " + err });
+      res
+        .status(500)
+        .send({ resData: "Silinme işlemi Başarısız.Hata : " + err });
     });
 };
 
 module.exports = {
   bilgiEkle,
   bilgiDuzenle,
-  Sil
+  bilgiSil,
 };
