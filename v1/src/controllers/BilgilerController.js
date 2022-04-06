@@ -1,7 +1,6 @@
 const { insert, remove, update } = require("../services/BilgilerService");
 
 const bilgiEkle = (req, res) => {
-  console.log(req.body);
   insert(req.body)
     .then((response) => {
       res.status(200).send({ resData: response });
@@ -23,7 +22,7 @@ const bilgiDuzenle = (req, res) => {
 const bilgiSil = (req, res) => {
   remove(req.body)
     .then((response) => {
-      console.log(response);
+      console.log("bilgiSil controller - ", response);
       res.status(200).send({ resData: response });
     })
     .catch((err) => {
