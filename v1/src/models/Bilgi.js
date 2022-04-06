@@ -18,8 +18,8 @@ BilgiSchema.post("save", (doc) => {
 });
 
 BilgiSchema.post("updateOne", (doc) => {
-  // console.log("Bilgi model: Düzenlenen doküman - ", doc);
-  return doc;
+  console.log("Bilgi model: Düzenlenen doküman - ", doc);
+  // return doc;
 });
 
 module.exports = mongoose.model("BilgiSchema", BilgiSchema);
