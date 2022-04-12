@@ -1,12 +1,15 @@
 const Monngoose = require("mongoose");
+const logger = require("../scripts/logger/bilgilerLogger");
 const db = Monngoose.connection;
 
-db.on("error", () => {
+db.on("error", (err) => {
   console.log("DB bağlantı hatası...");
+  logger.error("DB bağlantı hatası...", err);
 });
 
 db.once("open", async () => {
   console.log("DB bağlantısı sağlandı...");
+  logger.info("DB bağlantısı sağlandı...");
 });
 
 const connectDB = async () => {
