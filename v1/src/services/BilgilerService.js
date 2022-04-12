@@ -20,8 +20,13 @@ const remove = (silinecekbilgi) => {
   return Bilgi.findByIdAndDelete(silinecekbilgi.id);
 };
 
+const list = () => {
+  return Bilgi.find({});
+};
+
 module.exports = {
   insert,
   update,
   remove,
+  list
 };

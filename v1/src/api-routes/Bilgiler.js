@@ -4,22 +4,16 @@ const {
   bilgiEkle,
   bilgiDuzenle,
   bilgiSil,
+  bilgileriAl
 } = require("../controllers/BilgilerController");
 const Schemas = require("../validations/Bilgiler");
 const { ObjectValidation, IdValidate } = require("../middleware/validations");
 
 /** Bütün paylaşımları alma 
- *  EKSİK!!
 */
-router.get("/bilgiler", (req, res) => {
-  console.log("İstek geldi...", req);
-
-  console.log(`Gelen Request ${req}`);
-  res.status(200).send({
-    data: "link",
-    createdTime: "121212",
-  });
-});
+router
+  .route("/api/bilgiler")
+  .get(bilgileriAl);
 
 /** Paylaşım ekleme */
 router
