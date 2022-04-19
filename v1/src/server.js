@@ -6,15 +6,6 @@ const app_port = process.env.APP_PORT || 3002;
 
 app.use(BilgilerRoutes);
 
-// const option = {
-//   origin: "*",
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-// }
-
-// app.use(
-//   cors(option)
-// );
-
 app.listen(app_port, () => {
   //3002 portundan gelen istekler
   console.log(`${process.env.APP_PORT} portu dinleniyor...`);

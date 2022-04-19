@@ -27,7 +27,19 @@ const bilgiEkle = (req, res) => {
   const bilgileriAl = (req, res) => {
     list()
     .then((response) => {
-      res.send({ resData: JSON.stringify(response), status: 200 });
+      /**
+       * JSON.stringify() metodu, içerisine verilen nesneyi string e çevirir
+       * derste bu şkilde gönderdiğimiz için dizi haliyle alamadık.
+       * BackEnd uygulaması app.use(express.json()); (app.js içerisinde) ile 
+       * uygulama json() metodunu express sunucusunda kullansın diyerek, 
+       * bütün response ları json formatında gönder dedik.
+       * 
+       * Vue tarafında fetch().then().catch() bloğunu doğru kullanamadım, 
+       * bunu o taraftaki yorumlardan takip edin
+       */
+      //res.send({ resData: JSON.stringify(response), status: 200 });
+
+      res.send({ resData: response, status: 200 });
       logger.info("Bilgiler alındı.");
     })
     .catch((err) => {
