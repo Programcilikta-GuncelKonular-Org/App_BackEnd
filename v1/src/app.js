@@ -1,8 +1,8 @@
-
 const express = require("express");
 const helmet = require("helmet"); //npm paketi
 const config = require("./config");
 const loaders = require("./loaders");
+const cors = require("cors");
 
 config();
 loaders();
@@ -11,5 +11,9 @@ const app = express();
 
 app.use(helmet());
 app.use(express.json());
+
+app.use(
+  cors({ origin: "http://localhost:8080", methods: ["GET"], credentials: true })
+);
 
 module.exports = app;

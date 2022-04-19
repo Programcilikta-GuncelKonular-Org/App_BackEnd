@@ -27,7 +27,7 @@ const bilgiEkle = (req, res) => {
   const bilgileriAl = (req, res) => {
     list()
     .then((response) => {
-      res.status(200).send({ resData: response });
+      res.send({ resData: JSON.stringify(response), status: 200 });
       logger.info("Bilgiler alındı.");
     })
     .catch((err) => {

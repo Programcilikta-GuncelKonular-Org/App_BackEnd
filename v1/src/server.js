@@ -2,18 +2,18 @@ const app = require("./app");
 const { BilgilerRoutes } = require("./api-routes");
 const logger = require("./scripts/logger/bilgilerLogger");
 const app_port = process.env.APP_PORT || 3002;
-const cors = require("cors");
+// const cors = require("cors");
 
 app.use(BilgilerRoutes);
 
-const option = {
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-}
+// const option = {
+//   origin: "*",
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+// }
 
-app.use(
-  cors(option)
-);
+// app.use(
+//   cors(option)
+// );
 
 app.listen(app_port, () => {
   //3002 portundan gelen istekler
