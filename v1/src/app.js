@@ -13,7 +13,7 @@ app.use(helmet());
 app.use(express.json());
 
 app.use(
-  cors({ origin: "http://localhost:8080", methods: ["GET"], credentials: true })
+  cors({ origin: ["http://localhost:8080","http://localhost:8405"], methods: ["GET"], credentials: true })
 );
 
 module.exports = app;
