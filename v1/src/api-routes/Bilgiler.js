@@ -6,6 +6,7 @@ const {
   bilgiSil,
   bilgileriAl,
 } = require("../controllers/BilgilerController");
+const { kullaniciGiris } = require("../controllers/KullaniciController");
 const Schemas = require("../validations/Bilgiler");
 const {
   ObjectValidation,
@@ -43,10 +44,7 @@ router
   .route(process.env.POST_GIRIS)
   .post(
     KullaniciBilgiValidation(Schemas.kullaniciBilgiValidate),
-    (req, res) => {
-      console.log("Middleware işlendi...");
-      res.status(200).json({ mesaj: "Başarılı" });
-    }
+    kullaniciGiris
   );
 
 /**

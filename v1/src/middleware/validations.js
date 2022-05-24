@@ -8,18 +8,6 @@ const ObjectValidation = (schema) => (req, res, next) => {
   const { value, error } = schema.validate(req.body);
 
   if (error) {
-    /**
-     *  BURADA SIKINTI VAR !!
-    console.log(error);
-    const hataMesajiStr = error.details
-      ?.map((detay) => error.details)
-      .join(", ");
-    */
-
-    /**
-     * loglama yapılmalı
-     */
-
     logger.error("ObjectValidation hatası - ", error);
     res
       .status(httpStatus.BAD_REQUEST)
@@ -68,11 +56,9 @@ const KullaniciBilgiValidation = (schema) => (req, res, next) => {
   const { value, error } = schema.validate(req.body);
 
   if (error) {
-    res
-      .status(httpStatus.BAD_REQUEST)
-      .send({
-        hataMesaji: "Bilgiler eksik.",
-      });
+    res.status(httpStatus.BAD_REQUEST).send({
+      hataMesaji: "Bilgiler eksik.",
+    });
 
     return;
   }
