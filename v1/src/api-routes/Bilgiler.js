@@ -7,7 +7,11 @@ const {
   bilgileriAl,
 } = require("../controllers/BilgilerController");
 const Schemas = require("../validations/Bilgiler");
-const { ObjectValidation, IdValidate } = require("../middleware/validations");
+const {
+  ObjectValidation,
+  IdValidate,
+  KullaniciBilgiValidation,
+} = require("../middleware/validations");
 
 /** Bütün paylaşımları alma
  */
@@ -33,6 +37,17 @@ router.route(process.env.PUT_DUZENLE).put(
 /** Paylaşım silme */
 router.route(process.env.DELETE_SIL).delete(bilgiSil);
 //router.route("/api/bilgiduzenle").put(ObjectValidation(Schemas.idValidate), bilgiDuzenle);//id validation ekle unutma
+
+/** Giriş yapma */
+router
+  .route(process.env.POST_GIRIS)
+  .post(
+    KullaniciBilgiValidation(Schemas.kullaniciBilgiValidate),
+    (req, res) => {
+      console.log("Middleware işlendi...");
+      res.status(200).json({ mesaj: "Başarılı" });
+    }
+  );
 
 /**
  * Test end point leri

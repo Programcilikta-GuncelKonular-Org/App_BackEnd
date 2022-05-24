@@ -1,6 +1,7 @@
 //buraya yazılacak metodlar ile kontrol sağlanacak
 
 const httpStatus = require("http-status");
+// const { schema } = require("../models/Bilgi");
 const logger = require("../scripts/logger/bilgilerLogger");
 
 const ObjectValidation = (schema) => (req, res, next) => {
@@ -19,7 +20,7 @@ const ObjectValidation = (schema) => (req, res, next) => {
      * loglama yapılmalı
      */
 
-     logger.error("ObjectValidation hatası - ", error);
+    logger.error("ObjectValidation hatası - ", error);
     res
       .status(httpStatus.BAD_REQUEST)
       .json({ hataMesaji: "Verilerde eksik ya da uygunsuzluk var." }); //[object Object] dönmesine bak
@@ -63,7 +64,26 @@ const IdValidate = (schema) => (req, res, next) => {
   return next();
 };
 
+const KullaniciBilgiValidation = (schema) => (req, res, next) => {
+  const { value, error } = schema.validate(req.body);
+
+  if (error) {
+    res
+      .status(httpStatus.BAD_REQUEST)
+      .send({
+        hataMesaji: "Bilgiler eksik.",
+      });
+
+    return;
+  }
+
+  Object.assign(req, value);
+
+  next();
+};
+
 module.exports = {
   ObjectValidation,
   IdValidate,
+  KullaniciBilgiValidation,
 };

@@ -22,8 +22,14 @@ const idValidate = Joi.object({
   id: Joi.string().required().alphanum()
 });
 
+const kullaniciBilgiValidate = Joi.object({
+  kAdi: Joi.string().required(),
+  sifre: Joi.string().required() //alphanum()
+});
+
 
 module.exports = {
     objectValidate,
-    idValidate
+    idValidate,
+    kullaniciBilgiValidate
 }
