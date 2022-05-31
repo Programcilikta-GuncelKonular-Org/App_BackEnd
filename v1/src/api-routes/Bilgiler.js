@@ -42,9 +42,9 @@ router
   );
 
 /**
- * Test end point leri 
+ * Test end point leri */
 router.get(process.env.GET_TEST, (req, res) => {
   res.status(200).send(); //??
-});*/
+});
 
 module.exports = router;
