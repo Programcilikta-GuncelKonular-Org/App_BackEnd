@@ -12,32 +12,26 @@ const {
   ObjectValidation,
   IdValidate,
   KullaniciBilgiValidation,
+  GirisYapildiMi
 } = require("../middleware/validations");
 
-/** Bütün paylaşımları alma
- */
-router.route(process.env.GET_LISTELE).get(bilgileriAl);
+/** Bütün paylaşımları alma */
+router.route(process.env.GET_LISTELE).get(GirisYapildiMi(), bilgileriAl);
 
 /** Paylaşım ekleme */
 router
   .route(process.env.POST_EKLE)
-  .post(ObjectValidation(Schemas.objectValidate), bilgiEkle);
+  .post(GirisYapildiMi(), ObjectValidation(Schemas.objectValidate), bilgiEkle);
 
-/** Paylaşım düzenleme
- * IdValidate() metoduna Schemas.idValidate parametre olarak vermeyi atlamışız
- */
+/** Paylaşım düzenleme */
 router.route(process.env.PUT_DUZENLE).put(
   IdValidate(Schemas.idValidate),
-  (req, res, next) => {
-    console.log("Düzenle ikinci middleware metodu!! - req \n", req.body);
-    next();
-  },
+  GirisYapildiMi(),
   bilgiDuzenle
 );
 
 /** Paylaşım silme */
-router.route(process.env.DELETE_SIL).delete(bilgiSil);
-//router.route("/api/bilgiduzenle").put(ObjectValidation(Schemas.idValidate), bilgiDuzenle);//id validation ekle unutma
+router.route(process.env.DELETE_SIL).delete(GirisYapildiMi(), bilgiSil);
 
 /** Giriş yapma */
 router
@@ -48,10 +42,9 @@ router
   );
 
 /**
- * Test end point leri
- * */
+ * Test end point leri 
 router.get(process.env.GET_TEST, (req, res) => {
   res.status(200).send(); //??
-});
+});*/
 
 module.exports = router;
