@@ -1,9 +1,9 @@
-const app = require("./app.js");
-const { BilgilerRoutes } = require("./api-routes");
+const app = require("./v1/src/app.js");
+const { BilgilerRoutes } = require("./v1/src/api-routes");
 
 app.use(BilgilerRoutes);
 
-const logger = require("./scripts/logger/bilgilerLogger");
+const logger = require("./v1/src/scripts/logger/bilgilerLogger");
 const app_port = process.env.APP_PORT || 8080;
 
 app.listen(app_port, () => {
