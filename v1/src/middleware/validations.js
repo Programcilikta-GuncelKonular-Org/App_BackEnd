@@ -7,21 +7,39 @@ const {
 } = require("../services/KullaniciService.js");
 
 const GirisYapildiMi = () => (req, res, next) => {
-  const accessToken = req.header("Authorization").split(" ")[1];
-  const refreshToken = req.body.token.refreshToken;
+  const authHeader = req.header("Authorization") || "";
+
+  // console.log(!authHeader);
+
+  if(authHeader == ""){
+    res.status(401).send({ hataMesaji: "Kullanıcı sisteme giriş yapamamış." });
+  }
+
+  // console.log("authHeader - ", authHeader);
+
+  const accessToken = authHeader.split(" ")[1];
+  const refreshToken = authHeader.split(" ")[2]; // ????
 
   if (!accessToken) {
-    res.status(401).send({ hataMesaji: "Kullanıcı sisteme giriş ypamamış." });
+    res.status(401).send({ hataMesaji: "Kullanıcı sisteme giriş yapamamış." });
   }
 
   jwt.verify(refreshToken, process.env.REFRESHTOKENSECRET, (err, kullanici) => {
     if (!err && refreshTokenList.includes(refreshToken)) {
-      const { accessToken, refreshToken } = tokenleriOlustur(req.body.kullanici);
+      const { accessToken, refreshToken } = tokenleriOlustur(kullanici);
 
-      kullanici.accessToken = accessToken;
-      kullanici.refreshToken = refreshToken;
+      // kullanici.accessToken = accessToken;
+      // kullanici.refreshToken = refreshToken;
 
-      console.log("Yeni tokenler - ", kullanici);
+      const resKullanici = {
+        kAdi: kullanici.kAdi,
+        access: accessToken,
+        refresh: refreshToken,
+      };
+
+      res.kullanici = resKullanici;
+
+      // console.log("Yeni tokenler - ", kullanici);
 
       next();
     } else {
