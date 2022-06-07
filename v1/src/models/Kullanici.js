@@ -5,6 +5,7 @@ const KullaniciSchema = new mongoose.Schema(
     {
       kAdi: { type: String, required: true },
       sifre: { type: String, required: true },
+      rol: { type: Boolean, required: true }, //true-admin false-normal kullanıcı
     },
     {
       collection: "Kullanicilar",

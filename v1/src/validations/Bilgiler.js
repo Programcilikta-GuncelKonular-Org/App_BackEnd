@@ -11,7 +11,6 @@
 const Joi = require("joi");
 
 const objectValidate = Joi.object({
-//   bilgiMetni: Joi.string().required().min(50).max(300),
   bilgiMetni: Joi.string().required(),
   yapilanYorumlar: Joi.array(),
   begeniler: Joi.array(),
