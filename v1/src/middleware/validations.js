@@ -13,6 +13,7 @@ const GirisYapildiMi = () => (req, res, next) => {
 
   if(authHeader == ""){
     res.status(401).send({ hataMesaji: "Kullanıcı sisteme giriş yapamamış." });
+    return;
   }
 
   // console.log("authHeader - ", authHeader);
@@ -22,6 +23,7 @@ const GirisYapildiMi = () => (req, res, next) => {
 
   if (!accessToken) {
     res.status(401).send({ hataMesaji: "Kullanıcı sisteme giriş yapamamış." });
+    return;
   }
 
   jwt.verify(refreshToken, process.env.REFRESHTOKENSECRET, (err, kullanici) => {
@@ -41,12 +43,14 @@ const GirisYapildiMi = () => (req, res, next) => {
 
       // console.log("Yeni tokenler - ", kullanici);
 
-      next();
+      return next();
     } else {
       res.status(401).send({
         hataMesajı:
           "Kullanıcı sisteme giriş ypamamış ya da uzn süre işlem yapmamış.",
       });
+
+      return;
     }
   });
 };
@@ -68,7 +72,7 @@ const ObjectValidation = (schema) => (req, res, next) => {
   /**
    * başarılı validasyon loglaması yapılabilir
    */
-  return next();
+  next();
 };
 
 const IdValidate = (schema) => (req, res, next) => {
@@ -89,7 +93,7 @@ const IdValidate = (schema) => (req, res, next) => {
 
   Object.assign(req, value);
 
-  return next();
+  next();
 };
 
 const KullaniciBilgiValidation = (schema) => (req, res, next) => {
