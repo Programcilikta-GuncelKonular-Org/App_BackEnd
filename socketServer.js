@@ -13,11 +13,31 @@ server.listen(app_port, () => {
   logger.info(`${app_port} portu dinleniyor...`);
 });
 
-io.on("connection", (socket) => {
-  console.log("bağlantı sağlandı");
+let adminId = "";
 
-  socket.on("girisYapanKullanici", ({ kAdi }) => {
-    console.log("client mesaj -", kAdi);
-    io.emit("girisYapanKullaniciCevap", `Merhaba ${kAdi}`);
+io.on("connection", (socket) => {
+  // const { user } = socket.handshake.query;
+  // console.log("bağlantı sağlandı");
+
+  socket.on("kullaniciGirisi", ({ data }) => {
+    if (adminId != "") {
+      io.to(adminId).emit("girisYapanKullanici", {
+        data: { kAdi: data.kAdi, sId: socket.id },
+      });
+    }
+  });
+
+  socket.on("adminGirisi", () => {
+    // console.log("adminGirisi - ", socket.id);
+    adminId = socket.id;
+  });
+  
+  socket.on("disconnecting", () => {
+    // console.log("bağlantı kesildi - ", socket.id);
+    if (adminId != "") {
+      io.to(adminId).emit("cikisYapanKullanici", {
+        data: { sId: socket.id },
+      });
+    }
   });
 });
