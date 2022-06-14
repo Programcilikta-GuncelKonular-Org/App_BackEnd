@@ -14,6 +14,7 @@ server.listen(app_port, () => {
 });
 
 let adminId = "";
+let girisYapanlarListesi = [];
 
 io.on("connection", (socket) => {
   // const { user } = socket.handshake.query;
@@ -24,14 +25,24 @@ io.on("connection", (socket) => {
       io.to(adminId).emit("girisYapanKullanici", {
         data: { kAdi: data.kAdi, sId: socket.id },
       });
+    } else {
+      // console.log("adminden önce giriş: ", socket.id);
+      girisYapanlarListesi.push({
+        data: { kAdi: data.kAdi, sId: socket.id },
+      });
     }
   });
 
   socket.on("adminGirisi", () => {
     // console.log("adminGirisi - ", socket.id);
     adminId = socket.id;
+    if (girisYapanlarListesi.length > 0) {
+      io.to(adminId).emit("girisYapmisKullanicilar", {
+        data: { kullanicilar: girisYapanlarListesi },
+      });
+    }
   });
-  
+
   socket.on("disconnecting", () => {
     // console.log("bağlantı kesildi - ", socket.id);
     if (adminId != "") {
@@ -39,5 +50,8 @@ io.on("connection", (socket) => {
         data: { sId: socket.id },
       });
     }
+    girisYapanlarListesi = girisYapanlarListesi.filter((kisiObj) => {
+      return kisiObj.sId != socket.id;
+    });
   });
 });
